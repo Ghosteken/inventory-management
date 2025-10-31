@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import path from "path";
 /* ROUTE IMPORTS */
 import dashboardRoutes from "./routes/dashboardRoutes";
 import productRoutes from "./routes/productRoutes";
@@ -20,6 +21,9 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+
+/* STATIC FILES */
+app.use('/assets', express.static(path.join(__dirname, '../public/assets')));
 
 /* ROUTES */
 app.use("/dashboard", dashboardRoutes); // http://localhost:8000/dashboard
